@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calculadora DevSecOps</title>
+  <link rel="stylesheet" href="/public/style.css" />
+</head>
+<body>
+  <h1>Calculadora DevSecOps (Python + Vercel)</h1>
+
+  <form id="calc-form">
+    <label>
+      Número A:
+      <input type="number" step="any" id="a" required />
+    </label>
+    <label>
+      Operación:
+      <select id="op">
+        <option value="add">+</option>
+        <option value="sub">−</option>
+        <option value="mul">×</option>
+        <option value="div">÷</option>
+      </select>
+    </label>
+    <label>
+      Número B:
+      <input type="number" step="any" id="b" required />
+    </label>
+    <button type="submit">Calcular</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    const form = document.getElementById("calc-form");
+    const resultDiv = document.getElementById("result");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      resultDiv.textContent = "Calculando...";
+
+      const a = parseFloat(document.getElementById("a").value);
+      const b = parseFloat(document.getElementById("b").value);
+      const op = document.getElementById("op").value;
+
+      try {
+        const res = await fetch("/api/calc", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ a, b, op }),
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          resultDiv.textContent = "Error: " + (data.error || "Error desconocido");
+        } else {
+          resultDiv.textContent = "Resultado: " + data.result;
+        }
+      } catch (err) {
+        resultDiv.textContent = "Error de red";
+      }
+    });
+  </script>
+</body>
+</html>
