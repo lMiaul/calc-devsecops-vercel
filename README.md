@@ -31,3 +31,11 @@ Este proyecto sigue un enfoque DevSecOps donde la calidad, la seguridad y el des
 - **Fase Operate / Monitor**
   - El estado de la calidad se monitorea en el dashboard de SonarQube.
   - Los logs de ejecución y fallos de build/deploy se revisan en GitHub Actions y en el panel de Vercel.
+
+### Prueba negativa de la pipeline
+
+Se añadió el test `test_add_wrong_on_purpose` en `tests/test_core.py` que verifica incorrectamente que `add(2, 3) == 6`. Esta prueba se usa únicamente para validar que:
+
+- El job `ci-security` falla cuando las pruebas unitarias fallan.
+- El job `deploy-vercel` no se ejecuta debido a `needs: ci-security`.
+- No se genera un nuevo desplegable en Vercel con código defectuoso.
