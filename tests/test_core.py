@@ -29,3 +29,9 @@ def test_operate(op, a, b, expected):
 def test_operate_invalid():
     with pytest.raises(ValueError):
         operate(1, 2, "pow")
+
+def test_add_wrong_on_purpose():
+    # Prueba negativa para validar que la pipeline falla
+    # Aquí introducimos un resultado incorrecto a propósito.
+    from calculator.core import add
+    assert add(2, 3) == 5  # <-- esto es falso; debe provocar fallo
