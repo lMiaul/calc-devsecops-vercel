@@ -1,0 +1,12 @@
+[run]
+source =
+    calculator
+    api
+relative_files = True
+
+[report]
+omit =
+    tests/*
+
+[xml]
+output = coverage.xml

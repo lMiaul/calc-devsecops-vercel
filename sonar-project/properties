@@ -9,6 +9,7 @@ sonar.tests=tests
 # Lenguaje y codificación
 sonar.language=py
 sonar.sourceEncoding=UTF-8
+sonar.python.version=3.11.2
 
 # Reporte de cobertura (generado por coverage.xml)
 sonar.python.coverage.reportPaths=coverage.xml
