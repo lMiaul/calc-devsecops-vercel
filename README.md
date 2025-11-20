@@ -31,5 +31,3 @@ Este proyecto sigue un enfoque DevSecOps donde la calidad, la seguridad y el des
 - **Fase Operate / Monitor**
   - El estado de la calidad se monitorea en el dashboard de SonarQube.
   - Los logs de ejecución y fallos de build/deploy se revisan en GitHub Actions y en el panel de Vercel.
-
-Prueba
