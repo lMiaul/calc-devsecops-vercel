@@ -34,4 +34,4 @@ def test_add_wrong_on_purpose():
     # Prueba negativa para validar que la pipeline falla
     # Aquí introducimos un resultado incorrecto a propósito.
     from calculator.core import add
-    assert add(2, 3) == 6  # <-- esto es falso; debe provocar fallo
+    assert add(2, 3) == 5  # <-- esto es falso; debe provocar fallo
