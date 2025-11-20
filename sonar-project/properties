@@ -1,0 +1,14 @@
+sonar.projectKey=lMiaul_calc-devsecops-vercel
+sonar.projectName=calc-devsecops-vercel
+sonar.projectVersion=1.0
+
+# Código fuente y tests
+sonar.sources=calculator,api
+sonar.tests=tests
+
+# Lenguaje y codificación
+sonar.language=py
+sonar.sourceEncoding=UTF-8
+
+# Reporte de cobertura (generado por coverage.xml)
+sonar.python.coverage.reportPaths=coverage.xml
