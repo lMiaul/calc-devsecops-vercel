@@ -37,20 +37,15 @@ jobs:
         run: |
           pip-audit
 
-      - name: SonarQube scan
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
         env:
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          if [ -z "$SONAR_HOST_URL" ] || [ -z "$SONAR_TOKEN" ]; then
-            echo "SonarQube no configurado (faltan SONAR_HOST_URL o SONAR_TOKEN)."
-            exit 1
-          fi
-          pip install sonar-scanner-cli
-          sonar-scanner \
-            -Dsonar.host.url=$SONAR_HOST_URL \
-            -Dsonar.login=$SONAR_TOKEN
-          # Opcional: aquí podrías verificar el quality gate usando otro paso/acción
+        with:
+          args: >
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.python.coverage.reportPaths=coverage.xml
 
   deploy-vercel:
     needs: ci-security
